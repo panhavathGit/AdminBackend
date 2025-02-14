@@ -32,6 +32,7 @@ Route::prefix('foods')->group(function () {
         Route::post('/update/{id}', [FoodController::class, 'updateFood']);
         Route::delete('/delete/{id}', [FoodController::class, 'deleteFood']);
         Route::get('/search/{id}', [FoodController::class, 'searchFood']);
+        Route::get('/getAllFoods', [FoodController::class, 'getAllFoods']);
     });
 });
 
@@ -41,5 +42,6 @@ Route::prefix('category')->group(function () {
         Route::put('/update/{id}', [CategoryController::class, 'updateCategory']);
         Route::delete('/delete/{id}', [CategoryController::class, 'deleteCategory']);
         Route::get('/search/{id}', [CategoryController::class, 'searchCategory']);
+        Route::get('/getAllCategories', [FoodController::class, 'getAllCategories']);
     });
 });

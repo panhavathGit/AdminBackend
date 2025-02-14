@@ -49,6 +49,25 @@ class FoodController extends Controller
 
     }
 
+    public function getAllFoods(){
+        // Retrieve all food items
+        $foods = FoodModel::all();
+
+        // Check if there are no food items
+        if ($foods->isEmpty()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'No food items found',
+            ], 404);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Foods retrieved successfully!',
+            'data' => FoodResource::collection($foods)
+        ], 200);
+    }
+
     public function updateFood(Request $request, $id) { 
         try {
             $food = FoodModel::find($id);

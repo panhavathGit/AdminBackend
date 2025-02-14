@@ -27,6 +27,11 @@ class CategoryController extends Controller
         }
 
     }
+
+    public function getAllCategories(){
+        
+    }
+
     public function updateCategory(Request $request,$id){
         try{
             $category = FoodCategoryModel::find($id);
@@ -53,11 +58,23 @@ class CategoryController extends Controller
 
     }
 
-    public function deleteCategory(){
+    public function deleteCategory($id){
+        $category = FoodCategoryModel::find($id);
+
+        if(!$category){
+            return response()->json([
+                'message' => 'category not found'
+            ]);    
+        }
+
+        $category->delete();
+        return response()->json([
+            'message' => 'category deleted successfully!'
+        ]);
         
     }
 
-    public function searchFood(){
+    public function search(){
 
     }
 }
